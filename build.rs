@@ -5,6 +5,9 @@ use std::env;
 use std::path::PathBuf;
 
 fn main() {
+    #[cfg(not(target_os = "illumos"))]
+    compile_error!("libscf-sys is only supported on illumos");
+
     // Tell cargo to tell rustc to link the system scf shared library.
     println!("cargo:rustc-link-lib=scf");
 
